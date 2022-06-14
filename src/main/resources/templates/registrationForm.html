@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #products-static-resources},
+                                                ~{:: #products-header},
+                                                ~{:: #products-nav},
+                                                ~{:: #products-main-content},  
+                                                ~{:: #products-footer}
+                                               )}">
+                                              
+<head>
+    <title>Title of Products Page</title>
+    <th:block id="products-static-resources">  
+       <script type="text/javascript" src="../static/products.js" th:src="@{/products.js}"></script>
+    </th:block>
+</head>
+<body>
+    <div id="products-header">
+        Registration Form Details
+    </div>
+    <div id="products-nav" th:replace="~{/fragments/user-fragments :: nav-default}">
+         Nav
+    </div>
+    <div id="products-main-content">
+    <div th:switch="${formFlag}">
+    <div th:case="'1'">
+        <form action="#" th:action="@{/personDetailSave}" method="post" th:object="${personalDetailVo}">
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstName}" /><br/>
+ 		<label>Last Name:</label>
+        <input type="text" th:field="*{lastName}" /><br/>
+          <br/> 
+        <label>Father Name:</label>
+        <input type="text" th:field="*{fatherName}" /><br/>
+        	  <br/> 
+        <label>Birthday (yyyy-mm-dd):</label>
+        <input type="text" th:field="*{dateOfBirth}" /><br/>
+        	  <br/> 
+        <label>E-mail:</label>
+        <input type="text" th:field="*{email}" /><br/>
+   <br/> 
+        <label>Gender:</label>
+        <input type="radio" th:field="*{gender}" value="Male" />Male
+        <input type="radio" th:field="*{gender}" value="Female" />Female<br/>
+   <br/> 
+		 <label>Qualification:</label>
+        <select th:field="*{qualification}">
+        	<option value="">Select</option>
+				<option value="BA">BA</option>
+				<option value="B.COM">B.COM</option>
+				<option value="BSC">BSC</option>
+				<option value="BCA">BCA</option>
+				<option value="B.TECH">B.TECH</option>
+				<option value="MCA">MCA</option>
+				<option value="M.TECH">M.TECH</option>
+				<option value="MBBS">MBBS</option>
+				<option value="HOTEL MANGEMENT">HOTEL MANGEMENT</option>
+				<option value="OTHER">OTHER</option>
+           <!--  <option th:each="p : ${listProfession}" th:value="${p}" th:text="${p}" /> -->
+        </select>
+        <br/> 
+   <!--      <label>Profession:</label>
+        <select th:field="*{profession}">
+            <option th:each="p : ${listProfession}" th:value="${p}" th:text="${p}" />
+        </select> -->
+        <br/>
+        	 <label>Marrital Status:</label>
+   <select th:field="*{marritarialStatus}">
+        	<option value="">Select</option>
+				<option value="single">Single</option>
+				<option value="married">Married</option>
+				<option value="widowed">Widowed</option>
+				<option value="other">Other</option>
+				
+           <!--  <option th:each="p : ${listProfession}" th:value="${p}" th:text="${p}" /> -->
+        </select>
+ <br/>
+ <br/>
+        <button type="submit">Save Details</button>    
+    </form>
+    </div>
+    <div th:case="'2'">
+    <p> Address Detail Form </p>
+      <form action="#" th:action="@{/addressDetailSave}" method="post" th:object="${addressDetailVo}">
+
+
+
+      <button type="submit">Save Details</button> 
+     </form>
+    </div>
+    <div th:case="'3'">
+        <p> Your form is submitted Successfully Form Details </p>
+      <form action="#" th:action="@{/personDetailSave}" method="post" th:object="${personalDetailVo}">
+     </form>
+    </div>
+    </div></div>
+    <div id="products-footer" th:replace="~{/fragments/user-fragments :: copyright}">
+        Footer
+    </div>
+</body>
+</html>
+<style>
+* {
+    box-sizing: border-box;
+}
+header {
+    background-color: #666;
+    padding: 5px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+nav {
+    float: left;
+    width: 30%;
+    height: 433px;
+    background: #ccc;
+    padding: 20px;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+article {
+    float: left;
+    padding: 20px;
+    width: 70%;
+    background-color: #f1f1f1;
+    height: 433px;
+}
+section:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+@media ( max-width : 600px) {
+    nav, article {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>
+<style type="text/css">
+    label {
+        display: inline-block;
+        width: 200px;
+        margin: 5px;
+        text-align: left;
+    }
+    input[type=text], input[type=password], select {
+        display: inline-block;
+        width: 200px;
+    }
+    input[type=radio] {
+        margin-left: 45px;
+    }
+    input[type=checkbox] {
+        margin-right: 190px;
+    }  
+    button {
+        padding: 5px;
+        margin: 10px;
+    }
+</style>

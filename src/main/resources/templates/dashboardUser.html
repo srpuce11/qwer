@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #home-static-resources},
+                                                ~{:: #home-header},
+                                                ~{:: #home-nav},
+                                                ~{:: #home-main-content},  
+                                                ~{:: #home-footer}
+                                               )}">
+                                              
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+
+    <title>User Home Page</title>
+    <th:block id="home-static-resources">
+        <script type="text/javascript" src="../static/home.js" th:src="@{/home.js}"></script>
+        <link rel="stylesheet" type="text/css" href="../static/dashboard.css" th:href="@{/dashboard.css}"/>
+    </th:block>
+</head>
+<body>
+ 
+    <div id="home-header">
+         <span th:utext="${firstName}"></span> User  Dashboard
+    </div>
+    <div id="home-nav" th:replace="~{/fragments/user-fragments :: nav-default}">
+        Home Nav
+    </div>
+    <div id="home-main-content">
+        <h2>Welcome, <span th:utext="${firstName}"></span> to Rajpurohit Samaj Asotra user portal</h2>
+         <div>User Registration Details</div>
+        <div align="left">
+<p>Your Register Email ID is - <span th:utext="${userName}"></span></p>
+   
+</div>
+    </div>
+    <div id="home-footer" th:replace="~{/fragments/user-fragments :: copyright}">
+        Footer
+    </div>
+</body>
+</html>
+<style>
+* {
+    box-sizing: border-box;
+}
+header {
+    background-color: #666;
+    padding: 5px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+nav {
+    float: left;
+    width: 30%;
+    height: 300px;
+    background: #ccc;
+    padding: 20px;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+article {
+    float: left;
+    padding: 20px;
+    width: 70%;
+    background-color: #f1f1f1;
+    height: 300px;
+}
+section:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+@media ( max-width : 600px) {
+    nav, article {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>

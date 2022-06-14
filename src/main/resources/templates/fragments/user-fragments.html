@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>App Fragments</title>
+</head>
+<body>
+    <!-- Default Navigator -->
+    <ul th:fragment = "nav-default">
+        <li><a th:href="@{/dashboard}">Home</a></li>
+        <li><a th:href="@{/registrationForm}">Registration Form</a></li>
+        <li><a th:href="@{/about}">About</a></li>
+        <li><a th:href="@{/logout}">Logout</a></li>
+    </ul>
+    <!-- Admin Navigator -->
+    <ul th:fragment = "nav-admin">
+        <li><a th:href="@{/admin/products}">Product Management</a></li>
+        <li><a th:href="@{/admin/orders}">Order Management</a></li>
+    </ul>
+    <div th:fragment="copyright">
+      &copy; Brahmdhamtirth.org
+    </div>
+</body>
+</html>

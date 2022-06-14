@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(  
+                                                ~{::title},
+                                                ~{:: #products-static-resources},
+                                                ~{:: #products-header},
+                                                ~{:: #products-nav},
+                                                ~{:: #products-main-content},  
+                                                ~{:: #products-footer}
+                                               )}">
+                                              
+<head>
+    <title>Title of Products Page</title>
+    <th:block id="products-static-resources">  
+       <script type="text/javascript" src="../static/products.js" th:src="@{/products.js}"></script>
+    </th:block>
+</head>
+<body>
+    <div id="products-header">
+        Header of Products Page
+    </div>
+    <div id="products-nav" th:replace="~{/fragments/app-fragments :: nav-default}">
+         Nav
+    </div>
+    <div id="products-main-content">
+        <h2>Product</h2>
+        <p>Samsung</p>
+        <p>iPhone</p>
+        <p>Nokia</p>
+    </div>
+    <div id="products-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+        Footer
+    </div>
+</body>
+</html>
+<style>
+* {
+    box-sizing: border-box;
+}
+header {
+    background-color: #666;
+    padding: 5px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+nav {
+    float: left;
+    width: 30%;
+    height: 300px;
+    background: #ccc;
+    padding: 20px;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+article {
+    float: left;
+    padding: 20px;
+    width: 70%;
+    background-color: #f1f1f1;
+    height: 300px;
+}
+section:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+@media ( max-width : 600px) {
+    nav, article {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>
